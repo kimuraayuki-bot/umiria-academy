@@ -21,8 +21,8 @@ export const universities: University[] = [
         pastExamsUrl: "" 
       },
       graduate: { title: "大学院", 
-        requirementsUrl: "", 
-        pastExamsUrl: "" }
+        requirementsUrl: "https://www.s.u-tokyo.ac.jp/ja/admission/master/files/R8/R8_master_guidelines.pdf", 
+        pastExamsUrl: "https://www.phys.s.u-tokyo.ac.jp/about/147/" }
     }
   },
   {
@@ -35,8 +35,8 @@ export const universities: University[] = [
         pastExamsUrl: "https://ac.tsukuba.ac.jp/examination/exam_questions/?utm_source=chatgpt.com" 
       },
       graduate: { title: "大学院", 
-        requirementsUrl: "", 
-        pastExamsUrl: "" 
+        requirementsUrl: "https://www.ap-graduate.tsukuba.ac.jp/course/pas/", 
+        pastExamsUrl: "https://grad.physics.tsukuba.ac.jp/%e5%a4%a7%e5%ad%a6%e9%99%a2%e5%85%a5%e5%ad%a6%e6%a1%88%e5%86%85/" 
       }
     }
   },
@@ -49,8 +49,8 @@ export const universities: University[] = [
         requirementsUrl: "", 
         pastExamsUrl: "" },
       graduate: { title: "大学院", 
-        requirementsUrl: "", 
-        pastExamsUrl: "" 
+        requirementsUrl: "https://www.se.chiba-u.jp/admission/first/files/2026/info_s_2026_doctoralApplication_01.pdf", 
+        pastExamsUrl: "https://physics.s.chiba-u.ac.jp/exam/past/index.html" 
       }
     }
   },
@@ -64,7 +64,7 @@ export const universities: University[] = [
         pastExamsUrl: "" 
       },
       graduate: { title: "大学院", 
-        requirementsUrl: "", 
+        requirementsUrl: "https://www.fse.ynu.ac.jp/exam/exam/master/202604-02/docs/application_guideline.pdf?251010", 
         pastExamsUrl: "" 
       }
     }
@@ -79,8 +79,8 @@ export const universities: University[] = [
         pastExamsUrl: "" 
       },
       graduate: { title: "大学院", 
-        requirementsUrl: "", 
-        pastExamsUrl: "" 
+        requirementsUrl: "https://www.se.tmu.ac.jp/youkou/2026M/11.pdf", 
+        pastExamsUrl: "https://www.se.tmu.ac.jp/entrance_exam.html" 
       }
     }
   },
@@ -94,8 +94,8 @@ export const universities: University[] = [
         pastExamsUrl: "" 
       },
       graduate: { title: "大学院", 
-        requirementsUrl: "", 
-        pastExamsUrl: "" 
+        requirementsUrl: "https://www.saitama-u.ac.jp/rikogaku/wp-content/uploads/%E5%8D%9A%E5%A3%AB%E5%89%8D%E6%9C%9F%E8%AA%B2%E7%A8%8B%E3%80%80%E4%BB%A4%E5%92%8C8%E5%B9%B44%E6%9C%88%E5%85%A5%E5%AD%A6%EF%BC%88%E7%AC%AC3%E6%AC%A1%E5%8B%9F%E9%9B%86%EF%BC%89.pdf", 
+        pastExamsUrl: "https://phy.saitama-u.ac.jp/admission/#daigakuin" 
       }
     }
   }

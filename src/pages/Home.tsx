@@ -11,7 +11,7 @@ export default function Home() {
         <div className="heroOverlay">
           <h1 className="heroTitle">Umiria Academy</h1>
           <p className="heroLead">
-            大学編入・大学院受験のための情報整理と過去問解説。
+            物理学科への大学編入・大学院受験のための情報整理と過去問解説。
           </p>
 
           <div className="row" style={{ marginTop: 16 }}>

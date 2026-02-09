@@ -28,7 +28,6 @@ export default function Community() {
             <li>勉強会・進捗報告（習慣化）</li>
             <li>過去問の方針相談（解法の観点や復習設計）</li>
             <li>大学別の情報整理（募集要項・出題傾向など）</li>
-            <li>将来的に個別指導/講座の案内（※後日）</li>
           </ul>
         </div>
       </div>
