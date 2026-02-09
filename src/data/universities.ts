@@ -16,8 +16,13 @@ export const universities: University[] = [
     slug: "tokyo",
     categories: ["physics", "electronic-physics"],
     tracks: {
-      transfer: { title: "大学編入", requirementsUrl: "", pastExamsUrl: "" },
-      graduate: { title: "大学院", requirementsUrl: "", pastExamsUrl: "" }
+      transfer: { title: "大学編入", 
+        requirementsUrl: "", 
+        pastExamsUrl: "" 
+      },
+      graduate: { title: "大学院", 
+        requirementsUrl: "", 
+        pastExamsUrl: "" }
     }
   },
   {
@@ -25,8 +30,14 @@ export const universities: University[] = [
     slug: "tsukuba",
     categories: ["physics"],
     tracks: {
-      transfer: { title: "大学編入", requirementsUrl: "", pastExamsUrl: "" },
-      graduate: { title: "大学院", requirementsUrl: "", pastExamsUrl: "" }
+      transfer: { title: "大学編入", 
+        requirementsUrl: "https://ac.tsukuba.ac.jp/wp/wp-content/uploads/2025/04/R8_hennyu.pdf", 
+        pastExamsUrl: "https://ac.tsukuba.ac.jp/examination/exam_questions/?utm_source=chatgpt.com" 
+      },
+      graduate: { title: "大学院", 
+        requirementsUrl: "", 
+        pastExamsUrl: "" 
+      }
     }
   },
   {
@@ -34,8 +45,13 @@ export const universities: University[] = [
     slug: "chiba",
     categories: ["physics"],
     tracks: {
-      transfer: { title: "大学編入", requirementsUrl: "", pastExamsUrl: "" },
-      graduate: { title: "大学院", requirementsUrl: "", pastExamsUrl: "" }
+      transfer: { title: "大学編入", 
+        requirementsUrl: "", 
+        pastExamsUrl: "" },
+      graduate: { title: "大学院", 
+        requirementsUrl: "", 
+        pastExamsUrl: "" 
+      }
     }
   },
   {
@@ -43,8 +59,14 @@ export const universities: University[] = [
     slug: "ynu",
     categories: ["physics", "electronic-physics"],
     tracks: {
-      transfer: { title: "大学編入", requirementsUrl: "", pastExamsUrl: "" },
-      graduate: { title: "大学院", requirementsUrl: "", pastExamsUrl: "" }
+      transfer: { title: "大学編入", 
+        requirementsUrl: "", 
+        pastExamsUrl: "" 
+      },
+      graduate: { title: "大学院", 
+        requirementsUrl: "", 
+        pastExamsUrl: "" 
+      }
     }
   },
   {
@@ -52,8 +74,14 @@ export const universities: University[] = [
     slug: "tmu",
     categories: ["physics"],
     tracks: {
-      transfer: { title: "大学編入", requirementsUrl: "", pastExamsUrl: "" },
-      graduate: { title: "大学院", requirementsUrl: "", pastExamsUrl: "" }
+      transfer: { title: "大学編入", 
+        requirementsUrl: "", 
+        pastExamsUrl: "" 
+      },
+      graduate: { title: "大学院", 
+        requirementsUrl: "", 
+        pastExamsUrl: "" 
+      }
     }
   },
   {
@@ -61,8 +89,14 @@ export const universities: University[] = [
     slug: "saitama",
     categories: ["physics"],
     tracks: {
-      transfer: { title: "大学編入", requirementsUrl: "", pastExamsUrl: "" },
-      graduate: { title: "大学院", requirementsUrl: "", pastExamsUrl: "" }
+      transfer: { title: "大学編入", 
+        requirementsUrl: "", 
+        pastExamsUrl: "" 
+      },
+      graduate: { title: "大学院", 
+        requirementsUrl: "", 
+        pastExamsUrl: "" 
+      }
     }
   }
 ];

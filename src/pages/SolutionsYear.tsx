@@ -8,9 +8,9 @@ function isTrackKey(x: string | undefined): x is TrackKey {
 }
 
 export default function SolutionsYear() {
-  const { uniSlug, track, deptSlug, year } = useParams();
+  const { uniSlug, track, year } = useParams();
 
-  if (!isTrackKey(track) || !deptSlug || !year) {
+  if (!isTrackKey(track) || !year) {
     return (
       <div className="card">
         <h2>ページが見つかりません</h2>
@@ -21,9 +21,8 @@ export default function SolutionsYear() {
 
   const uni = universities.find((u) => u.slug === uniSlug);
   const uniSol = solutions.find((s) => s.uniSlug === uniSlug);
-  const dept = uniSol?.tracks[track].departments.find((d) => d.deptSlug === deptSlug);
   const y = Number(year);
-  const exam = dept?.exams.find((e) => e.year === y);
+  const exam = uniSol?.tracks[track].exams.find((e) => e.year === y);
 
   if (!uni) {
     return (
@@ -36,20 +35,11 @@ export default function SolutionsYear() {
 
   const trackLabel = track === "transfer" ? "大学編入" : "大学院";
 
-  if (!dept) {
-    return (
-      <div className="card">
-        <h2>{uni.name}：学科が見つかりません</h2>
-        <Link className="btn" to={`/solutions/${uni.slug}/${track}`}>学科一覧へ</Link>
-      </div>
-    );
-  }
-
   if (!exam) {
     return (
       <div className="card">
-        <h2>{uni.name} / {trackLabel} / {dept.deptName}：年度が見つかりません</h2>
-        <Link className="btn" to={`/solutions/${uni.slug}/${track}/${dept.deptSlug}`}>年度一覧へ</Link>
+        <h2>{uni.name} / {trackLabel}：年度が見つかりません</h2>
+        <Link className="btn" to={`/solutions/${uni.slug}/${track}`}>年度一覧へ</Link>
       </div>
     );
   }
@@ -57,12 +47,12 @@ export default function SolutionsYear() {
   return (
     <div>
       <div className="card">
-        <h2>{uni.name} / {trackLabel} / {dept.deptName} / {exam.year}</h2>
+        <h2>{uni.name} / {trackLabel} / {exam.year}</h2>
         <p>{exam.label}</p>
         <div className="row" style={{ marginTop: 10 }}>
-          <Link className="btn" to={`/solutions/${uni.slug}/${track}/${dept.deptSlug}`}>年度一覧へ</Link>
-          <Link className="btn" to={`/solutions/${uni.slug}/${track}`}>学科一覧へ</Link>
+          <Link className="btn" to={`/solutions/${uni.slug}/${track}`}>年度一覧へ</Link>
           <Link className="btn" to={`/solutions/${uni.slug}`}>区分へ</Link>
+          <Link className="btn" to="/solutions">過去問解説トップ</Link>
         </div>
       </div>
 

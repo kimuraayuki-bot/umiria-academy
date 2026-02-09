@@ -31,18 +31,12 @@ export default function UniversityDetail() {
 
   const track = uni.tracks[tab];
 
-  const transferDeptCount = uniSol?.tracks.transfer.departments.length ?? 0;
-  const graduateDeptCount = uniSol?.tracks.graduate.departments.length ?? 0;
-
-  const transferExamCount =
-    uniSol?.tracks.transfer.departments.reduce((acc, d) => acc + d.exams.length, 0) ?? 0;
-
-  const graduateExamCount =
-    uniSol?.tracks.graduate.departments.reduce((acc, d) => acc + d.exams.length, 0) ?? 0;
+  const transferExamCount = uniSol?.tracks.transfer.exams.length ?? 0;
+  const graduateExamCount = uniSol?.tracks.graduate.exams.length ?? 0;
 
   return (
     <div>
-      {/* 上：大学情報 */}
+      {/* 上：募集要項 / 過去問リンク */}
       <div className="card">
         <h2>{uni.name}</h2>
 
@@ -74,53 +68,27 @@ export default function UniversityDetail() {
         </div>
       </div>
 
-      {/* 下：この大学に登録されている解説の概要 */}
+      {/* 下：登録状況（物理固定なので“年度数”のみ表示） */}
       <div className="card" style={{ marginTop: 12 }}>
         <h3>過去問解説（登録状況）</h3>
 
         {!uniSol ? (
           <p>まだ解説がありません。</p>
         ) : (
-          <div className="grid" style={{ marginTop: 12 }}>
+          <div className="gridCards" style={{ marginTop: 12 }}>
             <div className="card">
               <h3>大学編入</h3>
-              <p>学科: {transferDeptCount} / 年度: {transferExamCount}</p>
-
-              {transferDeptCount === 0 ? (
-                <p>まだ解説がありません。</p>
-              ) : (
-                <ul>
-                  {uniSol.tracks.transfer.departments.map((dept) => (
-                    <li key={dept.deptSlug}>
-                      {dept.deptName}（{dept.exams.length} 年度）
-                    </li>
-                  ))}
-                </ul>
-              )}
-
-              <Link className="btn" to={`/solutions/${uni.slug}/transfer`} style={{ marginTop: 10 }}>
-                編入の解説へ
+              <p>年度: {transferExamCount} 件</p>
+              <Link className="btn primary" to={`/solutions/${uni.slug}/transfer`}>
+                編入の年度一覧へ
               </Link>
             </div>
 
             <div className="card">
               <h3>大学院</h3>
-              <p>学科: {graduateDeptCount} / 年度: {graduateExamCount}</p>
-
-              {graduateDeptCount === 0 ? (
-                <p>まだ解説がありません。</p>
-              ) : (
-                <ul>
-                  {uniSol.tracks.graduate.departments.map((dept) => (
-                    <li key={dept.deptSlug}>
-                      {dept.deptName}（{dept.exams.length} 年度）
-                    </li>
-                  ))}
-                </ul>
-              )}
-
-              <Link className="btn" to={`/solutions/${uni.slug}/graduate`} style={{ marginTop: 10 }}>
-                大学院の解説へ
+              <p>年度: {graduateExamCount} 件</p>
+              <Link className="btn primary" to={`/solutions/${uni.slug}/graduate`}>
+                大学院の年度一覧へ
               </Link>
             </div>
           </div>

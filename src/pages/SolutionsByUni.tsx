@@ -16,10 +16,8 @@ export default function SolutionsByUni() {
     );
   }
 
-  const transferCount =
-    uniSol?.tracks.transfer.departments.reduce((acc, d) => acc + d.exams.length, 0) ?? 0;
-  const graduateCount =
-    uniSol?.tracks.graduate.departments.reduce((acc, d) => acc + d.exams.length, 0) ?? 0;
+  const transferCount = uniSol?.tracks.transfer.exams.length ?? 0;
+  const graduateCount = uniSol?.tracks.graduate.exams.length ?? 0;
 
   return (
     <div>

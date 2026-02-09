@@ -6,7 +6,7 @@ export default function Community() {
       <div className="card">
         <h2 style={{ marginBottom: 8 }}>コミュニティ（Discord）</h2>
         <p>
-          Umiria AcademyのDiscordは、物理・電子物理系の受験（編入／大学院）に向けて、
+          Umiria AcademyのDiscordは、理学部物理学科の受験（編入／大学院）に向けて、
           情報共有と学習継続を支えるための場です。
         </p>
       </div>
