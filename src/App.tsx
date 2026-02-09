@@ -9,6 +9,7 @@ import SolutionsByTrack from "./pages/SolutionsByTrack";
 import SolutionsByDept from "./pages/SolutionsByDept";
 import SolutionsYear from "./pages/SolutionsYear";
 import NotFound from "./pages/NotFound";
+import Community from "./pages/Community";
 
 export default function App() {
   return (
@@ -24,6 +25,7 @@ export default function App() {
           <Route path="/solutions/:uniSlug/:track" element={<SolutionsByTrack />} />
           <Route path="/solutions/:uniSlug/:track/:deptSlug" element={<SolutionsByDept />} />
           <Route path="/solutions/:uniSlug/:track/:deptSlug/:year" element={<SolutionsYear />} />
+          <Route path="/community" element={<Community />} />
 
           <Route path="*" element={<NotFound />} />
         </Routes>

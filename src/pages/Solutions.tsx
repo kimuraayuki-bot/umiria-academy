@@ -9,7 +9,7 @@ export default function Solutions() {
     <div>
       <div className="card" style={{ marginBottom: 12 }}>
         <h2>過去問解説：大学一覧</h2>
-        <p>大学 → 学科 → 年度 の順に辿ります。</p>
+        <p>大学 →（編入/大学院）→ 学科 → 年度 の順に辿ります。</p>
       </div>
 
       <div className="grid">
@@ -17,7 +17,7 @@ export default function Solutions() {
           <div key={u.slug} className="card">
             <h3>{u.name}</h3>
             <p>{slugsWithSolutions.has(u.slug) ? "解説あり" : "まだ解説なし"}</p>
-            <Link className="btn" to={`/solutions/${u.slug}`}>学科一覧へ</Link>
+            <Link className="btn" to={`/solutions/${u.slug}`}>開く</Link>
           </div>
         ))}
       </div>
