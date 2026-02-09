@@ -27,7 +27,7 @@ export const solutions: UniSolutions[] = [
           {
             year: 2024,
             label: "物理（例）",
-            images: ["/solutions/tmu/transfer/2024/q1.png"]
+            images: [""]
           }
         ]
       },
