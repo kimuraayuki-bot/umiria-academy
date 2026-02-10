@@ -4,7 +4,12 @@ export default function Header() {
   return (
     <header className="siteHeader">
       <Link to="/" className="siteTitle">
-        ウミリア学院
+        <img
+          src="/images/icon.png"
+          alt="ウミリア学院"
+          className="siteLogo"
+        />
+        <span className="siteTitleText">ウミリア学院</span>
       </Link>
     </header>
   );
