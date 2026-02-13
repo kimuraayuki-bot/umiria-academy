@@ -8,6 +8,7 @@ import SolutionsByUni from "./pages/SolutionsByUni";
 import SolutionsByTrack from "./pages/SolutionsByTrack";
 import SolutionsYear from "./pages/SolutionsYear";
 import Community from "./pages/Community";
+import ResearchTypeDiagnosis from "./pages/ResearchTypeDiagnosis";
 import NotFound from "./pages/NotFound";
 
 export default function App() {
@@ -25,6 +26,7 @@ export default function App() {
           <Route path="/solutions/:uniSlug/:track/:year" element={<SolutionsYear />} />
 
           <Route path="/community" element={<Community />} />
+          <Route path="/diagnosis" element={<ResearchTypeDiagnosis />} />
 
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -6,10 +6,10 @@ export default function Header() {
       <Link to="/" className="siteTitle">
         <img
           src="/images/icon.png"
-          alt="ウミリア学院"
+          alt="Umiria Academy"
           className="siteLogo"
         />
-        <span className="siteTitleText">ウミリア学院</span>
+        <span className="siteTitleText">UMIRIA ACADEMY</span>
       </Link>
     </header>
   );
