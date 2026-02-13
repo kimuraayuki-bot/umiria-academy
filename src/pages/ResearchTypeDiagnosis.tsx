@@ -1,39 +1,201 @@
-const diagnosisUrl = import.meta.env.VITE_RESEARCH_DIAGNOSIS_URL as string | undefined;
+import { useMemo, useState } from "react";
+import { diagnoseType, diagnosisQuestions, diagnosisTypes } from "../data/diagnosis";
+
+type Choice = {
+  value: number;
+  side: "agree" | "neutral" | "disagree";
+  size: "sm" | "md" | "lg";
+  label: string;
+};
+
+const choices: Choice[] = [
+  { value: 3, side: "agree", size: "lg", label: "強く同意" },
+  { value: 2, side: "agree", size: "md", label: "同意" },
+  { value: 1, side: "agree", size: "sm", label: "やや同意" },
+  { value: 0, side: "neutral", size: "sm", label: "中立" },
+  { value: -1, side: "disagree", size: "sm", label: "やや不同意" },
+  { value: -2, side: "disagree", size: "md", label: "不同意" },
+  { value: -3, side: "disagree", size: "lg", label: "強く不同意" },
+];
 
 export default function ResearchTypeDiagnosis() {
+  const initialAnswers = useMemo(
+    () =>
+      Object.fromEntries(diagnosisQuestions.map((q) => [q.id, null])) as Record<string, number | null>,
+    []
+  );
+
+  const [answers, setAnswers] = useState<Record<string, number | null>>(initialAnswers);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [resultTypeId, setResultTypeId] = useState<string>("");
+  const [scoreText, setScoreText] = useState<string>("");
+  const [error, setError] = useState<string>("");
+
+  const question = diagnosisQuestions[currentIndex];
+  const answeredCount = diagnosisQuestions.filter((q) => answers[q.id] !== null).length;
+  const progressRatio = answeredCount / diagnosisQuestions.length;
+  const result = resultTypeId ? diagnosisTypes[resultTypeId] : null;
+  const allAnswered = answeredCount === diagnosisQuestions.length;
+
+  const selectChoice = (value: number) => {
+    setAnswers((prev) => ({ ...prev, [question.id]: value }));
+    setError("");
+  };
+
+  const nextQuestion = () => {
+    if (answers[question.id] === null) {
+      setError("回答を選択してから次へ進んでください。");
+      return;
+    }
+    setError("");
+    setCurrentIndex((prev) => Math.min(prev + 1, diagnosisQuestions.length - 1));
+  };
+
+  const prevQuestion = () => {
+    setError("");
+    setCurrentIndex((prev) => Math.max(prev - 1, 0));
+  };
+
+  const runDiagnosis = () => {
+    if (!allAnswered) {
+      setError("すべての設問に回答してください。");
+      return;
+    }
+    try {
+      const normalized = Object.fromEntries(
+        Object.entries(answers).map(([key, value]) => [key, Number(value)])
+      ) as Record<string, number>;
+      const diagnosed = diagnoseType(normalized);
+      setResultTypeId(diagnosed.typeId);
+      setScoreText(
+        `A:${diagnosed.score.A} / B:${diagnosed.score.B} / C:${diagnosed.score.C} / D:${diagnosed.score.D}`
+      );
+      setError("");
+    } catch (e) {
+      setResultTypeId("");
+      setScoreText("");
+      setError(e instanceof Error ? e.message : "診断中にエラーが発生しました。");
+    }
+  };
+
+  const resetAll = () => {
+    setAnswers(initialAnswers);
+    setCurrentIndex(0);
+    setResultTypeId("");
+    setScoreText("");
+    setError("");
+  };
+
   return (
     <div className="pageStack">
       <div className="card">
         <h2 style={{ marginBottom: 8 }}>研究室キャラ診断</h2>
         <p>
-          設問に回答すると、あなたの研究スタイルを16タイプで確認できます。
-          画面が表示されない場合は、下のリンクから別タブで開いてください。
+          12問に回答し、あなたの研究スタイルを16タイプで診断します。
         </p>
       </div>
 
-      <div className="card">
-        {diagnosisUrl ? (
-          <>
-            <iframe
-              src={diagnosisUrl}
-              title="Researcher Type Diagnosis"
-              className="diagnosisFrame"
-              loading="lazy"
-            />
-            <p className="diagnosisHelp">
-              表示されない場合:
-              {" "}
-              <a className="link" href={diagnosisUrl} target="_blank" rel="noreferrer">
-                診断ページを新しいタブで開く
-              </a>
-            </p>
-          </>
-        ) : (
-          <p className="textDanger" style={{ margin: 0 }}>
-            `VITE_RESEARCH_DIAGNOSIS_URL` が未設定です。`.env` にGASの `/exec` URL を設定してください。
-          </p>
-        )}
+      <div className="card diagnosisShell">
+        <div className="diagnosisTop">
+          <span className="badge">Q{currentIndex + 1} / {diagnosisQuestions.length}</span>
+          <span className="diagnosisHelp">回答済み {answeredCount} / {diagnosisQuestions.length}</span>
+        </div>
+
+        <div className="diagnosisProgressTrack">
+          <div className="diagnosisProgressFill" style={{ width: `${progressRatio * 100}%` }} />
+        </div>
+
+        <h3 className="diagnosisQuestionTitle">{question.text}</h3>
+
+        <div className="diagnosisScaleWrap">
+          <span className="diagnosisScaleEdge">同意</span>
+          <div className="diagnosisScaleButtons">
+            {choices.map((c) => (
+              <button
+                key={c.value}
+                type="button"
+                className={`diagnosisChoice ${c.side} ${c.size} ${answers[question.id] === c.value ? "active" : ""}`}
+                onClick={() => selectChoice(c.value)}
+                aria-label={c.label}
+                title={c.label}
+              />
+            ))}
+          </div>
+          <span className="diagnosisScaleEdge">不同意</span>
+        </div>
+
+        <div className="diagnosisLegend">
+          {choices.map((c) => (
+            <span key={c.value}>{c.value > 0 ? `+${c.value}` : c.value}: {c.label}</span>
+          ))}
+        </div>
+
+        <div className="row" style={{ marginTop: 12 }}>
+          <button className="btn" onClick={prevQuestion} disabled={currentIndex === 0}>
+            前へ
+          </button>
+          <button className="btn" onClick={nextQuestion} disabled={currentIndex === diagnosisQuestions.length - 1}>
+            次へ
+          </button>
+          <button className="btn primary" onClick={runDiagnosis}>
+            診断する
+          </button>
+          <button className="btn" onClick={resetAll}>
+            リセット
+          </button>
+        </div>
+
+        {error ? <p className="textDanger">{error}</p> : null}
       </div>
+
+      {result ? (
+        <div className="card diagnosisResult">
+          <div className="badge">TYPE ID: {resultTypeId}</div>
+          <div className="diagnosisResultHead">
+            <img
+              src={`/images/diagnosis-types/${resultTypeId}.svg`}
+              alt={`${result.name} キャラクター`}
+              className="diagnosisTypeImage"
+            />
+            <div>
+              <h3 style={{ marginTop: 10 }}>{result.name}</h3>
+              <p>{result.one}</p>
+              <p className="diagnosisHelp">スコア: {scoreText}</p>
+            </div>
+          </div>
+
+          <h3 style={{ marginTop: 16 }}>研究室での役割</h3>
+          <p>{result.role}</p>
+
+          <h3 style={{ marginTop: 16 }}>強み</h3>
+          <ul className="list">
+            {result.strengths.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+
+          <h3 style={{ marginTop: 16 }}>注意点</h3>
+          <ul className="list">
+            {result.pitfalls.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+
+          <h3 style={{ marginTop: 16 }}>明日からの処方箋</h3>
+          <ul className="list">
+            {result.tips.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+
+          <h3 style={{ marginTop: 16 }}>キャラデザイン案</h3>
+          <p>
+            配色: {result.design.color}
+            <br />
+            モチーフ: {result.design.items.join(" / ")}
+          </p>
+        </div>
+      ) : null}
     </div>
   );
 }
