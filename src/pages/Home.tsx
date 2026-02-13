@@ -8,18 +8,18 @@ export default function Home() {
         style={{ backgroundImage: "url(/images/hero.jpg)" }}
       >
         <div className="heroOverlay">
-          <h1 className="heroTitle">UMIRIA ORBITAL OBSERVATORY</h1>
+          <h1 className="heroTitle">ウミリア学院 / Umiria Academy</h1>
           <p className="heroLead">
-            理系進学と研究準備のための観測ステーション。
-            受験情報、過去問解説、学習コミュニティをひとつに集約しています。
+            理学部・物理学科を目指す受験生向けに、大学編入と大学院進学の募集要項リンク、
+            過去問リンク、学習コミュニティをまとめた情報サイトです。
           </p>
 
           <div className="row" style={{ marginTop: 16 }}>
             <Link className="btn primary" to="/universities">
-              大学データを見る
+              大学情報を見る
             </Link>
             <Link className="btn" to="/solutions">
-              過去問アーカイブへ
+              過去問解説へ
             </Link>
             <Link className="btn" to="/community">
               コミュニティへ
@@ -36,8 +36,8 @@ export default function Home() {
             <h2 className="cardTitle">大学情報</h2>
           </div>
           <p className="cardText">
-            編入・大学院進学向けに、出願条件や外部リンクを一覧化。
-            比較しながら次の志望校を決められます。
+            物理学科（またはそれに準ずる学科）への大学編入・大学院進学を想定し、
+            各大学の募集要項リンクと過去問リンクを確認できます。
           </p>
           <div className="cardCta">大学一覧を見る →</div>
         </Link>
@@ -48,8 +48,8 @@ export default function Home() {
             <h2 className="cardTitle">過去問解説</h2>
           </div>
           <p className="cardText">
-            大学・区分・年度ごとに整理した解説へアクセス。
-            画像付きで解答方針を追える構成です。
+            大学・区分・年度ごとに整理された過去問解説へアクセスできます。
+            試験対策の優先順位をつけるのに活用してください。
           </p>
           <div className="cardCta">解説へ進む →</div>
         </Link>
@@ -60,8 +60,8 @@ export default function Home() {
             <h2 className="cardTitle">コミュニティ</h2>
           </div>
           <p className="cardText">
-            Discordで質問・情報交換・学習報告が可能。
-            孤立しやすい受験期の継続を支えるための場です。
+            学習相談、進路情報の共有、大学院・大学編入の受験体験の交換ができる
+            Discordコミュニティを案内しています。
           </p>
           <div className="cardCta">参加方法を見る →</div>
         </Link>
@@ -73,7 +73,7 @@ export default function Home() {
           <h2 className="cardTitle">研究室キャラ診断</h2>
         </div>
         <p className="cardText">
-          研究スタイルを16タイプで可視化し、自分に合う役割や進め方を整理できます。
+          学習スタイルを16タイプで可視化し、自分に合う研究の進め方や役割を整理できます。
         </p>
         <div className="cardCta">
           <Link className="link" to="/diagnosis">診断を始める →</Link>
@@ -90,14 +90,14 @@ export default function Home() {
           color: "rgba(220,236,255,0.8)",
         }}
       >
-        <h2 style={{ fontSize: 16, marginBottom: 12 }}>UMIRIAが目指すもの</h2>
+        <h2 style={{ fontSize: 16, marginBottom: 12 }}>ウミリア学院が目指すもの</h2>
         <p>
-          UMIRIAは「理系進学を情報格差で諦めない」ための実践プラットフォームです。
-          必要な情報を短時間で比較できる設計にし、学習時間を最大化できる状態を作ります。
+          ウミリア学院（Umiria Academy）は、理学部・物理学科の進学情報を
+          一箇所で比較できる状態を作ることを重視しています。
         </p>
         <p>
-          単なる情報掲示板ではなく、進路判断・演習・相談の導線がつながる場所として
-          機能することを重視しています。
+          大学院、大学編入、過去問対策に必要な情報へ短時間で到達できるよう、
+          継続的に情報更新を行っています。
         </p>
       </section>
     </div>
