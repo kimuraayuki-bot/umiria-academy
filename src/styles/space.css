@@ -204,31 +204,31 @@ a.link:hover{ text-decoration: underline; }
 }
 
 .siteHeader {
-  /* 既にあるなら不要。高さを決めると揃えやすい */
+
   height: 64px;
   display: flex;
   align-items: center;
 }
 
 .siteTitle {
-  display: inline-flex;        /* これが大事 */
-  align-items: center;         /* これが中心揃えの核 */
+  display: inline-flex;
+  align-items: center;
   gap: 1px;
   text-decoration: none;
 }
 
 .siteLogo {
-  height: 44px;                /* ←ここで大きさ調整（おすすめ 36〜44） */
+  height: 44px;
   width: 44px;
   object-fit: contain;
-  display: block;              /* 画像の謎の下余白対策 */
+  display: block;
   flex-shrink: 0;
 }
 
 .siteTitleText {
-  font-size: 1.25rem;          /* 好みで */
+  font-size: 1.25rem;
   font-weight: 700;
-  line-height: 1;              /* これがズレ解消に効く */
+  line-height: 1; 
   display: block;
 }
 
