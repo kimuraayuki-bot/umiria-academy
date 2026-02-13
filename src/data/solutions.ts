@@ -5,7 +5,7 @@ export type Exam = {
 };
 
 export type TrackSolutions = {
-  label: "大学編入" | "大学院";
+  label: string;
   exams: Exam[];
 };
 
@@ -17,24 +17,5 @@ export type UniSolutions = {
   };
 };
 
-export const solutions: UniSolutions[] = [
-  {
-    uniSlug: "tmu",
-    tracks: {
-      transfer: {
-        label: "大学編入",
-        exams: [
-          {
-            year: 2024,
-            label: "物理（例）",
-            images: [""]
-          }
-        ]
-      },
-      graduate: {
-        label: "大学院",
-        exams: []
-      }
-    }
-  }
-];
+// 東京都立大学の過去問解説は削除済み
+export const solutions: UniSolutions[] = [];
