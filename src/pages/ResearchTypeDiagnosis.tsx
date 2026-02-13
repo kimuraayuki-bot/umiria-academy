@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
-import { diagnoseType, diagnosisQuestions, diagnosisTypes } from "../data/diagnosis";
+import { useNavigate } from "react-router-dom";
+import { diagnoseType, diagnosisQuestions } from "../data/diagnosis";
 
 type Choice = {
   value: number;
@@ -19,6 +20,7 @@ const choices: Choice[] = [
 ];
 
 export default function ResearchTypeDiagnosis() {
+  const navigate = useNavigate();
   const initialAnswers = useMemo(
     () =>
       Object.fromEntries(diagnosisQuestions.map((q) => [q.id, null])) as Record<string, number | null>,
@@ -27,14 +29,11 @@ export default function ResearchTypeDiagnosis() {
 
   const [answers, setAnswers] = useState<Record<string, number | null>>(initialAnswers);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [resultTypeId, setResultTypeId] = useState<string>("");
-  const [scoreText, setScoreText] = useState<string>("");
   const [error, setError] = useState<string>("");
 
   const question = diagnosisQuestions[currentIndex];
   const answeredCount = diagnosisQuestions.filter((q) => answers[q.id] !== null).length;
   const progressRatio = answeredCount / diagnosisQuestions.length;
-  const result = resultTypeId ? diagnosisTypes[resultTypeId] : null;
   const allAnswered = answeredCount === diagnosisQuestions.length;
 
   const selectChoice = (value: number) => {
@@ -66,14 +65,17 @@ export default function ResearchTypeDiagnosis() {
         Object.entries(answers).map(([key, value]) => [key, Number(value)])
       ) as Record<string, number>;
       const diagnosed = diagnoseType(normalized);
-      setResultTypeId(diagnosed.typeId);
-      setScoreText(
-        `A:${diagnosed.score.A} / B:${diagnosed.score.B} / C:${diagnosed.score.C} / D:${diagnosed.score.D}`
+      const query = new URLSearchParams({
+        a: String(diagnosed.score.A),
+        b: String(diagnosed.score.B),
+        c: String(diagnosed.score.C),
+        d: String(diagnosed.score.D),
+      }).toString();
+      navigate(
+        `/diagnosis/result/${diagnosed.typeId}?${query}`
       );
       setError("");
     } catch (e) {
-      setResultTypeId("");
-      setScoreText("");
       setError(e instanceof Error ? e.message : "診断中にエラーが発生しました。");
     }
   };
@@ -81,8 +83,6 @@ export default function ResearchTypeDiagnosis() {
   const resetAll = () => {
     setAnswers(initialAnswers);
     setCurrentIndex(0);
-    setResultTypeId("");
-    setScoreText("");
     setError("");
   };
 
@@ -147,55 +147,6 @@ export default function ResearchTypeDiagnosis() {
 
         {error ? <p className="textDanger">{error}</p> : null}
       </div>
-
-      {result ? (
-        <div className="card diagnosisResult">
-          <div className="badge">TYPE ID: {resultTypeId}</div>
-          <div className="diagnosisResultHead">
-            <img
-              src={`/images/diagnosis-types/${resultTypeId}.svg`}
-              alt={`${result.name} キャラクター`}
-              className="diagnosisTypeImage"
-            />
-            <div>
-              <h3 style={{ marginTop: 10 }}>{result.name}</h3>
-              <p>{result.one}</p>
-              <p className="diagnosisHelp">スコア: {scoreText}</p>
-            </div>
-          </div>
-
-          <h3 style={{ marginTop: 16 }}>研究室での役割</h3>
-          <p>{result.role}</p>
-
-          <h3 style={{ marginTop: 16 }}>強み</h3>
-          <ul className="list">
-            {result.strengths.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-
-          <h3 style={{ marginTop: 16 }}>注意点</h3>
-          <ul className="list">
-            {result.pitfalls.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-
-          <h3 style={{ marginTop: 16 }}>明日からの処方箋</h3>
-          <ul className="list">
-            {result.tips.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-
-          <h3 style={{ marginTop: 16 }}>キャラデザイン案</h3>
-          <p>
-            配色: {result.design.color}
-            <br />
-            モチーフ: {result.design.items.join(" / ")}
-          </p>
-        </div>
-      ) : null}
     </div>
   );
 }

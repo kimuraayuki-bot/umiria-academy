@@ -528,6 +528,13 @@ a.link:hover{
   gap: 6px;
 }
 
+.diagnosisShareRow{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
 .diagnosisResultHead{
   display: grid;
   grid-template-columns: 220px 1fr;

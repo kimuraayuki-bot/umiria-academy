@@ -9,6 +9,7 @@ import SolutionsByTrack from "./pages/SolutionsByTrack";
 import SolutionsYear from "./pages/SolutionsYear";
 import Community from "./pages/Community";
 import ResearchTypeDiagnosis from "./pages/ResearchTypeDiagnosis";
+import ResearchTypeDiagnosisResult from "./pages/ResearchTypeDiagnosisResult";
 import NotFound from "./pages/NotFound";
 
 export default function App() {
@@ -27,6 +28,7 @@ export default function App() {
 
           <Route path="/community" element={<Community />} />
           <Route path="/diagnosis" element={<ResearchTypeDiagnosis />} />
+          <Route path="/diagnosis/result/:typeId" element={<ResearchTypeDiagnosisResult />} />
 
           <Route path="*" element={<NotFound />} />
         </Routes>
