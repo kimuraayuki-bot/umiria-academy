@@ -13,7 +13,13 @@ export default function Universities() {
 
       <div className="grid">
         {universities.map((u) => (
-          <div key={u.slug} className="card">
+          <div key={u.slug} className="card universityCard">
+            <img
+              src={`/images/universities/${u.slug}.svg`}
+              alt={`${u.name} イメージ`}
+              className="universityThumb"
+              loading="lazy"
+            />
             <h3>{u.name}</h3>
 
             <Link

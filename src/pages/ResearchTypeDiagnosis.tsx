@@ -6,8 +6,8 @@ export default function ResearchTypeDiagnosis() {
       <div className="card">
         <h2 style={{ marginBottom: 8 }}>研究室キャラ診断</h2>
         <p>
-          外部のGoogle Apps Script Webアプリを診断ビューとして表示しています。
-          もし表示できない場合は、下のリンクから別タブで開いてください。
+          設問に回答すると、あなたの研究スタイルを16タイプで確認できます。
+          画面が表示されない場合は、下のリンクから別タブで開いてください。
         </p>
       </div>
 
@@ -21,7 +21,7 @@ export default function ResearchTypeDiagnosis() {
               loading="lazy"
             />
             <p className="diagnosisHelp">
-              埋め込み表示に失敗する場合:
+              表示されない場合:
               {" "}
               <a className="link" href={diagnosisUrl} target="_blank" rel="noreferrer">
                 診断ページを新しいタブで開く

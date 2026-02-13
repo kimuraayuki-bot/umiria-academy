@@ -39,6 +39,11 @@ export default function UniversityDetail() {
       {/* 上：募集要項 / 過去問リンク */}
       <div className="card">
         <h2>{uni.name}</h2>
+        <img
+          src={`/images/universities/${uni.slug}.svg`}
+          alt={`${uni.name} ヘッダーイメージ`}
+          className="universityDetailHero"
+        />
 
         <div className="tabs">
           <button

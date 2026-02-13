@@ -1,0 +1,33 @@
+﻿<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 675' role='img' aria-label='TMU university image'>
+  <defs>
+    <linearGradient id='bg' x1='0' y1='0' x2='1' y2='1'>
+      <stop offset='0%' stop-color='#091733'/>
+      <stop offset='50%' stop-color='#4b58ff' stop-opacity='0.55'/>
+      <stop offset='100%' stop-color='#0a1e45'/>
+    </linearGradient>
+    <radialGradient id='halo' cx='0.75' cy='0.2' r='0.7'>
+      <stop offset='0%' stop-color='#8ef8ff' stop-opacity='0.85'/>
+      <stop offset='100%' stop-color='#8ef8ff' stop-opacity='0'/>
+    </radialGradient>
+  </defs>
+  <rect width='1200' height='675' fill='url(#bg)'/>
+  <rect width='1200' height='675' fill='url(#halo)'/>
+  <g opacity='0.3'>
+    <circle cx='210' cy='120' r='2' fill='white'/>
+    <circle cx='310' cy='220' r='2' fill='white'/>
+    <circle cx='980' cy='140' r='2' fill='white'/>
+    <circle cx='890' cy='260' r='2' fill='white'/>
+    <circle cx='1020' cy='390' r='2' fill='white'/>
+  </g>
+  <g transform='translate(300,338)'>
+    <circle cx='0' cy='0' r='170' fill='none' stroke='#d0f8ff' stroke-opacity='0.55' stroke-width='2'/>
+    <circle cx='0' cy='0' r='110' fill='none' stroke='#d0f8ff' stroke-opacity='0.35' stroke-width='2'/>
+    <circle cx='0' cy='0' r='52' fill='#8ef8ff' fill-opacity='0.75'/>
+  </g>
+  <g transform='translate(780,338)'>
+    <rect x='-160' y='-70' width='320' height='140' rx='18' fill='#08132d' fill-opacity='0.55' stroke='#d0f8ff' stroke-opacity='0.45'/>
+    <text x='0' y='-10' text-anchor='middle' font-size='22' font-family='Segoe UI, Noto Sans JP, sans-serif' fill='#e9f5ff' letter-spacing='4'>TMU</text>
+    <text x='0' y='28' text-anchor='middle' font-size='18' font-family='Segoe UI, Noto Sans JP, sans-serif' fill='#d7edff'>Physics Admission Data</text>
+  </g>
+</svg>
+

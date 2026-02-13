@@ -11,6 +11,15 @@ export default function Community() {
         </p>
       </div>
 
+      <div className="card communityVisualCard">
+        <img
+          src="/images/sections/community-orbit.svg"
+          alt="コミュニティ ビジュアル"
+          className="communityVisual"
+          loading="lazy"
+        />
+      </div>
+
       <div className="gridCards">
         <div className="card">
           <h3 style={{ marginBottom: 8 }}>基本ルール</h3>
